@@ -1,7 +1,4 @@
 local Tag = require("leetcode-ui.group.tag")
-local Line = require("leetcode-ui.line")
-
-local log = require("leetcode.logger")
 
 ---@class lc.ui.Tag.sup : lc.ui.Tag
 local Sup = Tag:extend("LeetTagSup")
@@ -45,11 +42,13 @@ local superscript = {
     ["z"] = "ᶻ",
 }
 
--- function Sup:append(content, highlight)
---     content = content:gsub(".", function(match) return superscript[match:lower()] or match end)
---
---     Sup.super.append(self, content, highlight)
--- end
+function Sup:append(content, highlight)
+    content = content:gsub(".", function(match)
+        return superscript[match:lower()] or match
+    end)
+
+    Sup.super.append(self, content, highlight)
+end
 
 function Sup:parse_node()
     self:append("^")
