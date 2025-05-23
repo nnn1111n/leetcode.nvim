@@ -1,7 +1,5 @@
 local Tag = require("leetcode-ui.group.tag")
 
-local log = require("leetcode.logger")
-
 ---@class lc.ui.Tag.sub : lc.ui.Tag
 local Sub = Tag:extend("LeetTagSub")
 
@@ -44,11 +42,13 @@ local subscript = {
     ["z"] = "z",
 }
 
--- function Sub:append(content, highlight)
---     content = content:gsub(".", function(match) return subscript[match:lower()] or match end)
---
---     Sub.super.append(self, content, highlight)
--- end
+function Sub:append(content, highlight)
+    content = content:gsub(".", function(match)
+        return subscript[match:lower()] or match
+    end)
+
+    Sub.super.append(self, content, highlight)
+end
 
 function Sub:parse_node()
     self:append("_")
